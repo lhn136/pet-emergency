@@ -1,11 +1,11 @@
 .container {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   padding: 0 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .main {
@@ -118,4 +118,34 @@
     width: 100%;
     flex-direction: column;
   }
+}
+
+.hospitalCard {
+  display: flex;
+  flex-direction: row;
+  width: 550px;
+  height: 176px;
+}
+
+.distance_ratings {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+}
+
+.name {
+  font-size: 13px;
+  font-weight: medium;
+}
+
+.phone,
+.address {
+  font-size: 10px;
 }

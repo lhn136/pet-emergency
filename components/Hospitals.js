@@ -1,21 +1,42 @@
 import { useQuery, gql } from '@apollo/client';
 import styles from '../styles/Home.module.css';
+// import testData from './testData.json';
 
 const QUERY = gql`
   query getHospitals {
-    business(id: "tnhfDv5Il8EaGSXZGiuQGg") {
-      name
-      id
-      alias
-      rating
-      url
+    search(
+      categories: "emergencypethospital"
+      latitude: 33.7313
+      longitude: -117.9123
+      open_now: true
+      sort_by: "distance"
+    ) {
+      business {
+        name
+        rating
+        display_phone
+        distance
+        hours {
+          open {
+            start
+            end
+          }
+        }
+        location {
+          formatted_address
+        }
+      }
     }
   }
 `;
 
-export default function Hospitals() {
-  const { data, loading, error } = useQuery(QUERY);
-  console.log({ data });
+export default function Hospitals({ hospitalData }) {
+  //   const { data, loading, error } = useQuery(QUERY);
+  //   console.log('Hi');
+  //   console.log({ hospitalData });
+  const data = hospitalData;
+  let loading, error;
+  let sortedData;
   if (loading) {
     return (
       <h2>
@@ -43,8 +64,47 @@ export default function Hospitals() {
     console.error(error);
     return null;
   }
+  if (data) {
+    sortedData = data.slice().sort((a, b) => {
+      a.distance - b.distance;
+    });
+    // console.log({ sortedData });
+    //     1: "display_phone"
+    // ​​
+    // 2: "distance"
+    // ​​
+    // 3: "name"
+    // ​​
+    // 4: "rating"'
+    // let lat, long;
+    // navigator.geolocation.getCurrentPosition(function (position) {
+    //   lat = position.coords.latitude;
+    //   long = position.coords.longitude;
 
-  const countries = data.countries.slice(0, 4);
+    //   console.log(lat, long);
+    // });
+  }
 
-  return <div className={styles.grid}>works</div>;
+  return (
+    <div>
+      {sortedData &&
+        sortedData.map(
+          ({ id, display_phone, address, distance, name, rating, location }, index) => {
+            return (
+              <div className={styles.hospitalCard} key={id}>
+                <div className={styles.distance_ratings}>
+                  <span>{Math.round(distance * 0.000621371 * 100) / 100} miles </span>
+                  <span>{rating} stars</span>
+                </div>
+                <div className={styles.details}>
+                  <div className={styles.name}>{name}</div>
+                  <div className={styles.address}>{location.formatted_address}</div>
+                  <div className={styles.phone}>{display_phone}</div>
+                </div>
+              </div>
+            );
+          }
+        )}
+    </div>
+  );
 }
