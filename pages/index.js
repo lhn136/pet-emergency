@@ -3,69 +3,100 @@ import styles from '../styles/Home.module.css';
 import ClientOnly from '../components/ClientOnly';
 import Hospitals from '../components/Hospitals';
 import { useRouter } from 'next/router';
+import instructionImage from '../public/instructions.png';
+import locationRequestImage from '../public/location-request.svg';
+import Image from 'next/image';
+
+{
+  /* <button
+  onClick={() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      if (position.coords.latitude && position.coords.longitude) {
+        Router.push({
+          pathname: `/hospital-near`,
+          query: {
+            latitude: `${position.coords.latitude}`,
+            longitude: `${position.coords.longitude}`,
+          },
+        });
+      }
+    });
+  }}
+>
+  Send me Location
+</button>; */
+}
 
 export default function Home(hospitalData) {
   const Router = useRouter();
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      />
+      <h1 className={styles.appName} style={{ borderBottom: '1px solid black' }}>
+        <span style={{ color: '#0070f3' }}>Pet</span> Emergency
+      </h1>
+      <h1 className={styles.titleText}>
+        Keep{' '}
+        <span style={{ color: '#0070f3' }}>
+          <strong>calm</strong>
+        </span>
+        . We are here to help.
+      </h1>
+      <div className={styles.container}>
+        <div className={styles.CPRInstructions}>
+          <h2>Choking and CPR</h2>
+          <div className={styles.PictureContainer}>
+            <Image src={instructionImage} width="500px" height="600px" layout="fixed"></Image>
+          </div>
+        </div>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          <a
-            href="#welcome-to-next-js"
-            aria-hidden="true"
-            class="aal_anchor"
-            id="welcome-to-next-js"
-          >
-            <svg
-              aria-hidden="true"
-              class="aal_svg"
-              height="16"
-              version="1.1"
-              viewBox="0 0 16 16"
-              width="16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"
-              ></path>
-            </svg>
-          </a>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-        <ClientOnly>
-          {/* <Hospitals hospitalData={hospitalData} /> */}
+        <div className={styles.NearestHospitals}>
+          <h2>Nearest emergency animal hospitals</h2>
+          <div className={styles.NearestScrollable} style={{ overflow: 'hidden' }}>
+            <ClientOnly>
+              <div className={`${styles.hospitalCard} ${styles.card}`}>
+                <div className={styles.distance_ratings}>
+                  <Image src={locationRequestImage}></Image>
+                </div>
+                <div className={styles.details}>
+                  <div className={styles.name}>Location Service</div>
+                  <div className={styles.address}>
+                    We need to know where you are in order to find nearby emergency pet hospitals
+                  </div>
 
-          <button
-            onClick={() => {
-              navigator.geolocation.getCurrentPosition(function (position) {
-                if (position.coords.latitude && position.coords.longitude) {
-                  Router.push({
-                    pathname: `/hospital-near`,
-                    query: {
-                      latitude: `${position.coords.latitude}`,
-                      longitude: `${position.coords.longitude}`,
-                    },
-                  });
-                }
-              });
-            }}
-          >
-            Send me Location
-          </button>
-        </ClientOnly>
-      </main>
-
-      <footer className={styles.footer}>
-        <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">
-          Powered by <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+                  <div className={styles.buttons}>
+                    <button
+                      className={styles.navigate}
+                      onClick={() => {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                          if (position.coords.latitude && position.coords.longitude) {
+                            Router.push({
+                              pathname: `/hospital-near`,
+                              query: {
+                                latitude: `${position.coords.latitude}`,
+                                longitude: `${position.coords.longitude}`,
+                              },
+                            });
+                          }
+                        });
+                      }}
+                    >
+                      Enable Location Service
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </ClientOnly>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
