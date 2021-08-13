@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
+
 import Hospitals from '../components/Hospitals';
 import styles from '../styles/Home.module.css';
-import instructionImage from '../public/instructions.png';
+
 import Image from 'next/image';
-import { isNonEmptyArray } from '@apollo/client/utilities';
 import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
@@ -46,16 +46,12 @@ export async function getServerSideProps(context) {
     error = e.message;
     return error;
   }
-
-  // console.log('THIS DA DATA');
-  // console.log({ data: hospitalData });
   // Pass data to the page via props
 
   return { props: { hospitalData } };
 }
 
 export default function HospitalNear({ hospitalData }) {
-  s;
   const Router = useRouter();
   return (
     <>
