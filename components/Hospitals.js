@@ -1,6 +1,6 @@
 import { useQuery, gql } from '@apollo/client';
 import styles from '../styles/Home.module.css';
-import testData from './testData.json';
+// import testData from './testData.json';
 
 const QUERY = gql`
   query getHospitals {
@@ -34,8 +34,8 @@ export default function Hospitals({ hospitalData }) {
   //   const { data, loading, error } = useQuery(QUERY);
   //   console.log('Hi');
   //   console.log({ hospitalData });
-  //   const data = hospitalData;
-  const data = testData.data.search.business;
+  const data = hospitalData;
+  // const data = testData.data.search.business;
 
   let sortedData;
 

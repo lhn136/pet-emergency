@@ -250,12 +250,25 @@ button:active.copy {
   margin: 0 1em;
 }
 
+.CPRInstructions > .NearestScrollable {
+  overflow: hidden;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-left: 1em;
+}
+.CPRInstructions > .NearestScrollable button {
+  font-size: 1.2em !important;
+  padding: 0.43em 1.6em;
+  margin: 0 1em;
+}
+
 .NearestScrollable {
   overflow: scroll;
   width: 45vw;
   max-width: 700px;
   min-width: 450px;
-  height: 650px;
+  height: 690px;
   display: flex;
   flex-direction: column;
   align-items: center;

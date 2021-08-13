@@ -53,6 +53,13 @@ export async function getServerSideProps(context) {
 }
 
 export default function HospitalNear({ hospitalData }) {
+  const handleLink = (URL) => {
+    if (URL) {
+      // open URL in a new tab
+      window.open(URL, '_blank');
+    }
+  };
+
   const Router = useRouter();
   return (
     <>
@@ -69,18 +76,29 @@ export default function HospitalNear({ hospitalData }) {
       <div className={styles.container}>
         <div className={styles.CPRInstructions}>
           <h2>Choking and CPR</h2>
-          <h3>For</h3>
-          <div
+          {/* <div
             className={styles.NearestScrollable + ' ' + styles.buttons}
             styles={{ overflow: 'hidden' }}
           >
-            <button className={styles.navigate}>cat</button>
+            <button className={styles.copy}>cat</button>
 
-            <button className={styles.navigate}>dog</button>
-          </div>
-          {/* <div className={styles.PictureContainer}>
-            <Image src={instructionImage} width="500px" height="600px" layout="fixed"></Image>
+            <button className={styles.copy} onClick={() => handleLink()}>
+              dog
+            </button>
+
+            <button className={styles.copy}>others</button>
           </div> */}
+          <div className={styles.PictureContainer}>
+            <Image
+              loader={() => {
+                return 'https://2mgq9d1askwg2mcs5o2x38iu-wpengine.netdna-ssl.com/wp-content/uploads/2020/01/CPR-Cats-and-Dogs.gif';
+              }}
+              src={'CPR-Cats-and-Dogs.gif'}
+              width="500px"
+              height="750px"
+              layout="fixed"
+            ></Image>
+          </div>
         </div>
 
         <div className={styles.NearestHospitals}>
