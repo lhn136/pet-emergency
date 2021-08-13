@@ -1,11 +1,12 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+
 import ClientOnly from '../components/ClientOnly';
 import Hospitals from '../components/Hospitals';
-import { useRouter } from 'next/router';
-import instructionImage from '../public/instructions.png';
+
+import styles from '../styles/Home.module.css';
 import locationRequestImage from '../public/location-request.svg';
-import Image from 'next/image';
 
 {
   /* <button
@@ -53,7 +54,15 @@ export default function Home(hospitalData) {
         <div className={styles.CPRInstructions}>
           <h2>Choking and CPR</h2>
           <div className={styles.PictureContainer}>
-            <Image src={instructionImage} width="500px" height="600px" layout="fixed"></Image>
+            <Image
+              loader={() => {
+                return 'https://2mgq9d1askwg2mcs5o2x38iu-wpengine.netdna-ssl.com/wp-content/uploads/2020/01/CPR-Cats-and-Dogs.gif';
+              }}
+              src={'CPR-Cats-and-Dogs.gif'}
+              width="500px"
+              height="800px"
+              layout="fixed"
+            ></Image>
           </div>
         </div>
 
