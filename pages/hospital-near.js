@@ -45,8 +45,8 @@ export async function getServerSideProps(context) {
   }
 
   const hospitalData = await data.search.business;
-  console.log('THIS DA DATA');
-  console.log({ data: hospitalData });
+  // console.log('THIS DA DATA');
+  // console.log({ data: hospitalData });
   // Pass data to the page via props
 
   return { props: { hospitalData } };

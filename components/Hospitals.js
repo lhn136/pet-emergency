@@ -66,7 +66,7 @@ export default function Hospitals({ hospitalData }) {
   };
   const handleNavigateWithGoogleMap = (address) => {
     if (address) {
-      console.log({ address });
+      // console.log({ address });
       let query = address.replace(/\s/g, '+').replace(',', '');
       let baseURL = 'https://www.google.com/maps/place/';
       // open URL in a new tab
