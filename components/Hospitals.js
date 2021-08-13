@@ -1,48 +1,11 @@
-import { useQuery, gql } from '@apollo/client';
 import styles from '../styles/Home.module.css';
 // import testData from './testData.json';
 
-const QUERY = gql`
-  query getHospitals {
-    search(
-      categories: "emergencypethospital"
-      latitude: 33.7313
-      longitude: -117.9123
-      open_now: true
-      sort_by: "distance"
-    ) {
-      business {
-        name
-        rating
-        display_phone
-        distance
-        hours {
-          open {
-            start
-            end
-          }
-        }
-        location {
-          formatted_address
-        }
-      }
-    }
-  }
-`;
-
-export default function Hospitals({ hospitalData }) {
-  //   const { data, loading, error } = useQuery(QUERY);
-  //   console.log('Hi');
-  //   console.log({ hospitalData });
   const data = hospitalData;
   // const data = testData.data.search.business;
 
   let sortedData;
-
-  // if (error) {
-  //   console.error(error);
-  //   return null;
-  // }
+  // SORTED BY DISTANCE
   if (data) {
     sortedData = data.slice().sort((a, b) => {
       a.distance - b.distance;
