@@ -40,7 +40,7 @@ export async function getServerSideProps(context) {
 
   const { data } = await client.query({ query: QUERY });
 
-  const hospitalData = await data.search.business;
+  const hospitalData = data.search.business;
   // console.log('THIS DA DATA');
   // console.log({ data: hospitalData });
   // Pass data to the page via props
