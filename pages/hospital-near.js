@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
   let { latitude, longitude } = context.query;
-  let hospitalData, error;
   const QUERY = gql`
     query getHospitals {
       search(
@@ -38,11 +37,14 @@ export async function getServerSideProps(context) {
     }
   `;
 
+  let hospitalData, error;
   try {
     const { data } = await client.query({ query: QUERY });
+
     hospitalData = data.search.business;
   } catch (e) {
     error = e.message;
+    return error;
   }
 
   // console.log('THIS DA DATA');
@@ -53,13 +55,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function HospitalNear({ hospitalData }) {
-  const handleLink = (URL) => {
-    if (URL) {
-      // open URL in a new tab
-      window.open(URL, '_blank');
-    }
-  };
-
+  s;
   const Router = useRouter();
   return (
     <>
@@ -95,7 +91,7 @@ export default function HospitalNear({ hospitalData }) {
               }}
               src={'CPR-Cats-and-Dogs.gif'}
               width="500px"
-              height="750px"
+              height="800px"
               layout="fixed"
             ></Image>
           </div>
@@ -104,17 +100,8 @@ export default function HospitalNear({ hospitalData }) {
         <div className={styles.NearestHospitals}>
           <h2>
             Nearest emergency animal hospitals
-            {/* <i class="far fa-compass"></i> */}
-            {/* <i class="fas fa-sync-alt"></i> */}
             <button
               className={'fas fa-sync-alt ' + styles.refreshButton}
-              // style={{
-              //   border: 'none',
-              //   background: 'transparent',
-              //   color: '#0070f3',
-              //   marginLeft: '.5em',
-              //   marginBottom: '.5em',
-              // }}
               onClick={() => {
                 navigator.geolocation.getCurrentPosition(function (position) {
                   if (position.coords.latitude && position.coords.longitude) {
