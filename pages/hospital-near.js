@@ -38,11 +38,7 @@ export async function getServerSideProps(context) {
     }
   `;
 
-  const { data, error } = await client.query({ query: QUERY });
-
-  if (error) {
-    return error;
-  }
+  const { data } = await client.query({ query: QUERY });
 
   const hospitalData = await data.search.business;
   // console.log('THIS DA DATA');
