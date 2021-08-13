@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 
 export async function getServerSideProps(context) {
   let { latitude, longitude } = context.query;
-
+  let hospitalData, error;
   const QUERY = gql`
     query getHospitals {
       search(
@@ -38,9 +38,13 @@ export async function getServerSideProps(context) {
     }
   `;
 
-  const { data } = await client.query({ query: QUERY });
+  try {
+    const { data } = await client.query({ query: QUERY });
+    hospitalData = data.search.business;
+  } catch (e) {
+    error = e.message;
+  }
 
-  const hospitalData = data.search.business;
   // console.log('THIS DA DATA');
   // console.log({ data: hospitalData });
   // Pass data to the page via props
