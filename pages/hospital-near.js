@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function HospitalNear({ hospitalData }) {
-  // const Router = useRouter();
+  const Router = useRouter();
   return (
     <>
       <h1 className={styles.appName}>
@@ -71,7 +71,7 @@ export default function HospitalNear({ hospitalData }) {
         <div className={styles.NearestHospitals}>
           <h2>
             Nearest emergency animal hospitals
-            {/* <button
+            <button
               className={'fas fa-sync-alt ' + styles.refreshButton}
               onClick={() => {
                 navigator.geolocation.getCurrentPosition(function (position) {
@@ -86,7 +86,7 @@ export default function HospitalNear({ hospitalData }) {
                   }
                 });
               }}
-            ></button> */}
+            ></button>
           </h2>
           <Hospitals hospitalData={hospitalData} />
         </div>
