@@ -7,10 +7,6 @@ export default function Hospitals({ hospitalData }) {
 
   let sortedData;
 
-  // if (error) {
-  //   console.error(error);
-  //   return null;
-  // }
   if (data) {
     sortedData = data.slice().sort((a, b) => {
       a.distance - b.distance;

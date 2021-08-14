@@ -152,7 +152,7 @@
   /* height: 100%; */
   background: white;
   filter: drop-shadow(0 0.2rem 0.28rem rgba(0, 0, 0, 0.2));
-  transition: all 0.1s;
+  transition: all 1.2s;
   margin-bottom: 30px;
 }
 

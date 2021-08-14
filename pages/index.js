@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import ClientOnly from '../components/ClientOnly';
 import Hospitals from '../components/Hospitals';
-
+import Instructions from '../components/Instructions';
 import styles from '../styles/Home.module.css';
 import locationRequestImage from '../public/location-request.svg';
 
@@ -51,20 +51,7 @@ export default function Home(hospitalData) {
         . We are here to help.
       </h1>
       <div className={styles.container}>
-        <div className={styles.CPRInstructions}>
-          <h2>Choking and CPR</h2>
-          <div className={styles.PictureContainer}>
-            <Image
-              loader={() => {
-                return 'https://2mgq9d1askwg2mcs5o2x38iu-wpengine.netdna-ssl.com/wp-content/uploads/2020/01/CPR-Cats-and-Dogs.gif';
-              }}
-              src={'CPR-Cats-and-Dogs.gif'}
-              width="500px"
-              height="800px"
-              layout="fixed"
-            ></Image>
-          </div>
-        </div>
+        <Instructions/>
 
         <div className={styles.NearestHospitals}>
           <h2>Nearest emergency animal hospitals</h2>
