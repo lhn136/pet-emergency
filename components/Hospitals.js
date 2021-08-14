@@ -38,7 +38,6 @@ export default function Hospitals({ hospitalData }) {
     }
   };
   return (
-    data && (
       <div className={styles.NearestScrollable}>
         {sortedData &&
           sortedData.map(
@@ -92,6 +91,5 @@ export default function Hospitals({ hospitalData }) {
             }
           )}
       </div>
-    )
   );
 }

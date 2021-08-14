@@ -28,7 +28,7 @@ import locationRequestImage from '../public/location-request.svg';
 </button>; */
 }
 
-export default function Home(hospitalData) {
+export default function Home() {
   const Router = useRouter();
 
   return (

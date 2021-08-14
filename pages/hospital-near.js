@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
 }
 
 export default function HospitalNear({ hospitalData }) {
-  const Router = useRouter();
+  // const Router = useRouter();
   return (
     <>
       <h1 className={styles.appName}>
