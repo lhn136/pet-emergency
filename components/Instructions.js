@@ -15,6 +15,7 @@ export default function Instructions() {
           width="500px"
           height="800px"
           layout="fixed"
+          className={styles.Picture}
         ></Image>
       </div>
     </div>

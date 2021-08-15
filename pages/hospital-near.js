@@ -77,7 +77,7 @@ export default function HospitalNear({ hospitalData }) {
                 navigator.geolocation.getCurrentPosition(function (position) {
                   if (position.coords.latitude && position.coords.longitude) {
                     Router.push({
-                      pathname: `/hospital-near`,
+                      pathname: `/`,
                       query: {
                         latitude: `${position.coords.latitude}`,
                         longitude: `${position.coords.longitude}`,

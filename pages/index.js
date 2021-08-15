@@ -2,19 +2,77 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { gql } from '@apollo/client';
+import client from '../apollo-client';
+
 import ClientOnly from '../components/ClientOnly';
 import Hospitals from '../components/Hospitals';
 import Instructions from '../components/Instructions';
+import LocationServiceCard from '../components/LocationServiceCard';
+import RefreshButton from '../components/RefreshButton';
+import NavBar from '../components/NavBar';
+
 import styles from '../styles/Home.module.css';
 import locationRequestImage from '../public/location-request.svg';
 
-{
-  /* <button
-  onClick={() => {
+export async function getServerSideProps(context) {
+  let { latitude, longitude } = context.query;
+  if (!latitude && !longitude) {
+    return { props: { hospitalData: {} } };
+  }
+
+  const QUERY = gql`
+    query getHospitals {
+      search(
+        categories: "emergencypethospital"
+        latitude: ${latitude}
+        longitude: ${longitude}
+        open_now: true
+        sort_by: "distance"
+      ) {
+        business {
+          name
+          rating
+          display_phone
+          distance
+          hours {
+            open {
+              start
+              end
+            }
+          }
+          location {
+            formatted_address
+          }
+        }
+      }
+    }
+  `;
+
+  let hospitalData, error;
+  try {
+    const { data } = await client.query({ query: QUERY });
+
+    hospitalData = data.search.business;
+  } catch (e) {
+    error = e.message;
+    return error;
+  }
+  // Pass data to the page via props
+
+  return { props: { hospitalData } };
+}
+
+export default function Home({ hospitalData }) {
+  // console.log({ hospitalData });
+  // console.log(Object.keys(hospitalData).length);
+  const Router = useRouter();
+
+  const getLocation = () => {
     navigator.geolocation.getCurrentPosition(function (position) {
       if (position.coords.latitude && position.coords.longitude) {
         Router.push({
-          pathname: `/hospital-near`,
+          pathname: `/`,
           query: {
             latitude: `${position.coords.latitude}`,
             longitude: `${position.coords.longitude}`,
@@ -22,14 +80,7 @@ import locationRequestImage from '../public/location-request.svg';
         });
       }
     });
-  }}
->
-  Send me Location
-</button>; */
-}
-
-export default function Home() {
-  const Router = useRouter();
+  };
 
   return (
     <>
@@ -40,56 +91,29 @@ export default function Home() {
         crossOrigin="anonymous"
         referrerPolicy="no-referrer"
       />
-      <h1 className={styles.appName} style={{ borderBottom: '1px solid black' }}>
-        <span style={{ color: '#0070f3' }}>Pet</span> Emergency
-      </h1>
+      <NavBar getLocation={getLocation} />
       <h1 className={styles.titleText}>
         Keep{' '}
-        <span style={{ color: '#0070f3' }}>
+        <span style={{ color: 'var(--main-blue-color)' }}>
           <strong>calm</strong>
         </span>
         . We are here to help.
       </h1>
       <div className={styles.container}>
-        <Instructions/>
+        <Instructions />
 
         <div className={styles.NearestHospitals}>
-          <h2>Nearest emergency animal hospitals</h2>
+          <div className={styles.sectionTitle}>
+            <h2>Nearest emergency animal hospitals</h2>
+            {Object.keys(hospitalData).length ? <RefreshButton getLocation={getLocation} /> : ''}
+          </div>
           <div className={styles.NearestScrollable} style={{ overflow: 'hidden' }}>
-            <ClientOnly>
-              <div className={`${styles.hospitalCard} ${styles.card}`}>
-                <div className={styles.distance_ratings}>
-                  <Image src={locationRequestImage}></Image>
-                </div>
-                <div className={styles.details}>
-                  <div className={styles.name}>Location Service</div>
-                  <div className={styles.address}>
-                    We need to know where you are in order to find nearby emergency pet hospitals
-                  </div>
-
-                  <div className={styles.buttons}>
-                    <button
-                      className={styles.navigate}
-                      onClick={() => {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                          if (position.coords.latitude && position.coords.longitude) {
-                            Router.push({
-                              pathname: `/hospital-near`,
-                              query: {
-                                latitude: `${position.coords.latitude}`,
-                                longitude: `${position.coords.longitude}`,
-                              },
-                            });
-                          }
-                        });
-                      }}
-                    >
-                      Enable Location Service
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </ClientOnly>
+            {Object.keys(hospitalData).length ? (
+              <Hospitals hospitalData={hospitalData} />
+            ) : (
+              <LocationServiceCard />
+            )}
+            {/* <LocationServiceCard /> */}
           </div>
         </div>
       </div>
