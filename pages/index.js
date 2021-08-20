@@ -104,7 +104,7 @@ export default function Home({ hospitalData }) {
 
         <div className={styles.NearestHospitals}>
           <div className={styles.sectionTitle}>
-            <h2>Nearest emergency animal hospitals</h2>
+            <h2>Nearest open emergency pet hospitals</h2>
             {Object.keys(hospitalData).length ? <RefreshButton getLocation={getLocation} /> : ''}
           </div>
           <div className={styles.NearestScrollable} style={{ overflow: 'hidden' }}>

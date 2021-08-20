@@ -2,16 +2,18 @@ import Image from 'next/image';
 
 import styles from '../styles/Home.module.css';
 
+import cprP1 from '../public/CPR-Cats-and-Dogs-P1.gif';
+
 export default function Instructions() {
   return (
     <div className={styles.CPRInstructions}>
       <h2>Choking and CPR</h2>
       <div className={styles.PictureContainer}>
         <Image
-          loader={() => {
-            return 'https://2mgq9d1askwg2mcs5o2x38iu-wpengine.netdna-ssl.com/wp-content/uploads/2020/01/CPR-Cats-and-Dogs.gif';
-          }}
-          src={'CPR-Cats-and-Dogs.gif'}
+          // loader={() => {
+          //   return 'https://2mgq9d1askwg2mcs5o2x38iu-wpengine.netdna-ssl.com/wp-content/uploads/2020/01/CPR-Cats-and-Dogs.gif';
+          // }}
+          src={cprP1}
           width="500px"
           height="800px"
           layout="fixed"
