@@ -334,3 +334,7 @@ button:active.copy {
   display: flex;
   flex-direction: row;
 }
+
+.NavItem {
+  display: flex;
+}
