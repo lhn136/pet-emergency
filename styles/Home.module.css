@@ -314,7 +314,7 @@ button:active.copy {
 .refreshButton:active {
   color: rgba(0, 112, 243, 1) !important;
   /* box-shadow: 1em rgba(0, 112, 243, 0.5); */
-  transform: rotate(360deg);
+  /* transform: rotate(360deg); */
   -webkit-transform: rotate(360deg);
   -moz-transform: rotate(360deg);
 }
