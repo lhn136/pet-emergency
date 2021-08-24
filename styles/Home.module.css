@@ -145,7 +145,7 @@
 
   margin: 0.5rem;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: .60em;
   background: white;
   filter: drop-shadow(0 0.2rem 0.28rem rgba(0, 0, 0, 0.2));
   transition: all 1.2s;
@@ -217,7 +217,7 @@ button:active.copy {
 }
 
 .name {
-  font-size: 0.75em;
+  font-size: 1em;
   font-weight: 600;
 }
 
@@ -227,7 +227,7 @@ button:active.copy {
 
 .phone,
 .address {
-  font-size: 0.65em;
+  font-size: 0.80em;
 }
 
 .open {
@@ -281,7 +281,7 @@ button:active.copy {
 .PictureContainer {
   display: flex;
   justify-content: center;
-  border-radius: 12px;
+  border-radius: .60em;
   padding: 1.5em 1.5em;
   margin: 1.9em auto;
   background: white;
@@ -298,8 +298,8 @@ button:active.copy {
 .refreshButton {
   margin: auto 0;
   font-size: 1em;
-  width: 1.5em;
-  height: 1.5em;
+  width: 28px;
+  height: 18px;
   border: none;
   background: transparent;
   color: var(--main-blue-color);
@@ -314,7 +314,7 @@ button:active.copy {
 .refreshButton:active {
   color: rgba(0, 112, 243, 1) !important;
   /* box-shadow: 1em rgba(0, 112, 243, 0.5); */
-  /* transform: rotate(360deg); */
+  transform: rotate(360deg);
   -webkit-transform: rotate(360deg);
   -moz-transform: rotate(360deg);
 }
@@ -357,7 +357,7 @@ button:active.copy {
     /* min-width: 300px; */
     max-width: 550px;
     padding: 1em 0.2em;
-    margin: 2em 0em;
+    margin: 2em -.5em;
   }
 
   .buttons button {
@@ -377,7 +377,15 @@ button:active.copy {
   .address {
     font-size: 0.75em;
   }
+  .open{
+    margin-left: .5em;
+  }
+
+  .distance_ratings{
+    padding-right: .5em;
+  }
   .PictureContainer {
     margin-left: 0;
+    padding: .5em .5em;
   }
 }
