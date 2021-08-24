@@ -35,7 +35,7 @@ const LocationServiceCard = () => {
               });
             }}
           >
-            Enable Location Service
+            Enable Location
           </button>
         </div>
       </div>

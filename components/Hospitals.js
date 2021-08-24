@@ -38,7 +38,7 @@ export default function Hospitals({ hospitalData }) {
     }
   };
   return (
-    <div className={styles.NearestScrollable}>
+    <>
       {sortedData &&
         sortedData.map(({ id, display_phone, distance, name, rating, location, hours }, index) => {
           if (index < 5) {
@@ -90,6 +90,6 @@ export default function Hospitals({ hospitalData }) {
             );
           }
         })}
-    </div>
+    </>
   );
 }

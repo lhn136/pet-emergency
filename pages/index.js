@@ -83,40 +83,45 @@ export default function Home({ hospitalData }) {
   };
 
   return (
-    <>
-      <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
-      />
-      <NavBar getLocation={getLocation} />
-      <h1 className={styles.titleText}>
-        Keep{' '}
-        <span style={{ color: 'var(--main-blue-color)' }}>
-          <strong>calm</strong>
-        </span>
-        . We are here to help.
-      </h1>
-      <div className={styles.container}>
-        <Instructions />
+    <div className={styles.mainContainer}>
+      <Head>
+        <title>PetEmergency</title>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      </Head>
 
-        <div className={styles.NearestHospitals}>
-          <div className={styles.sectionTitle}>
-            <h2>Nearest open emergency pet hospitals</h2>
-            {Object.keys(hospitalData).length ? <RefreshButton getLocation={getLocation} /> : ''}
-          </div>
-          <div className={styles.NearestScrollable} style={{ overflow: 'hidden' }}>
+      <NavBar getLocation={getLocation} />
+      <main>
+        <h1 className={styles.titleText}>
+          Keep{' '}
+          <span style={{ color: 'var(--main-blue-color)' }}>
+            <strong>calm</strong>
+          </span>
+          . We are here to help.
+        </h1>
+        <div className={styles.container}>
+          <Instructions />
+
+          <div className={styles.NearestHospitals}>
+            <div className={styles.sectionTitle}>
+              <h2>Nearest available emergency pet hospitals</h2>
+              {Object.keys(hospitalData).length ? <RefreshButton getLocation={getLocation} /> : ''}
+            </div>
+            {/* <div className={styles.NearestScrollable} style={{ overflow: 'hidden' }}> */}
             {Object.keys(hospitalData).length ? (
               <Hospitals hospitalData={hospitalData} />
             ) : (
               <LocationServiceCard />
             )}
-            {/* <LocationServiceCard /> */}
+            {/* </div> */}
           </div>
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   );
 }
