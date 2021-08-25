@@ -392,7 +392,7 @@ button:active.copy {
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 480px) {
   .hospitalCard {
     margin: 1em -0.5em;
   }
@@ -406,9 +406,10 @@ button:active.copy {
   }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 350px) {
   .buttons button {
-    font-size: 0.65em;
+    font-size: 0.7em;
     margin: 0.5em 0.5em;
+    padding: 0.8em 1.2em;
   }
 }
