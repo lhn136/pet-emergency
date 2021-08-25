@@ -219,6 +219,7 @@ button:active.copy {
 .name {
   font-size: 1em;
   font-weight: 600;
+  margin-bottom: 0.5em;
 }
 
 .phone_open {
@@ -283,7 +284,7 @@ button:active.copy {
   justify-content: center;
   border-radius: 0.6em;
   padding: 1.5em 1.5em;
-  margin: 1.9em auto;
+  margin: 1em auto;
   background: white;
   /* width: 500px; */
   max-width: 550px;
@@ -305,22 +306,26 @@ button:active.copy {
   color: var(--main-blue-color);
   margin-left: 0.5em;
   /* margin-bottom: 0.5em; */
-  transition: all 0.8s ease-in-out;
-  -moz-transition: all 0.8s ease-in-out;
-  -webkit-transition: all 0.8s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
 }
 
 .refreshButton:hover,
 .refreshButton:active {
-  color: rgba(0, 112, 243, 1) !important;
+  color: rgba(0, 112, 243, 0.6) !important;
   /* box-shadow: 1em rgba(0, 112, 243, 0.5); */
-  transform: rotate(360deg);
+  /* transform: rotate(360deg);
   -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
+  -moz-transform: rotate(360deg); */
 }
 
 .container > div > h2 {
   width: 80%;
+}
+.sectionTitle > h2,
+.CPRInstructions > h2 {
+  margin-bottom: 0.4em;
 }
 
 .sectionTitle {
@@ -357,12 +362,9 @@ button:active.copy {
     /* min-width: 300px; */
     max-width: 550px;
     padding: 1em 0.2em;
-    margin: 2em 0em;
+    margin: 1em 0em;
   }
 
-  .buttons button {
-    font-size: 0.75em;
-  }
   .container {
     flex-direction: column-reverse;
     /* min-width: 500px; */
@@ -392,10 +394,21 @@ button:active.copy {
 
 @media (max-width: 400px) {
   .hospitalCard {
-    margin: 2em -0.5em;
+    margin: 1em -0.5em;
+  }
+  .buttons button {
+    font-size: 0.8em;
+    padding: 0.8em 1.5em;
   }
   .PictureContainer {
     margin-left: -0.5em;
     margin-right: -0.5em;
+  }
+}
+
+@media (max-width: 300px) {
+  .buttons button {
+    font-size: 0.65em;
+    margin: 0.5em 0.5em;
   }
 }
