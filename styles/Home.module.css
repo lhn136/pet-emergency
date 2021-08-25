@@ -2,7 +2,7 @@
   padding: 0 0.5rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   /* align-items: center; */
   /* height: 100vh; */
 }
@@ -357,7 +357,7 @@ button:active.copy {
     /* min-width: 300px; */
     max-width: 550px;
     padding: 1em 0.2em;
-    margin: 2em -.5em;
+    margin: 2em 0em;
   }
 
   .buttons button {
@@ -386,6 +386,17 @@ button:active.copy {
   }
   .PictureContainer {
     margin-left: 0;
-    padding: .5em .5em;
+    padding: 1em .5em;
+  }
+}
+
+@media (max-width: 400px) {
+  
+  .hospitalCard { 
+    margin: 2em -.5em;
+  }
+  .PictureContainer { 
+    margin-left: -.5em;
+    margin-right: -.5em;
   }
 }
