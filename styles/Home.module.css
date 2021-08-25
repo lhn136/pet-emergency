@@ -145,7 +145,7 @@
 
   margin: 0.5rem;
   padding: 1.5rem;
-  border-radius: .60em;
+  border-radius: 0.6em;
   background: white;
   filter: drop-shadow(0 0.2rem 0.28rem rgba(0, 0, 0, 0.2));
   transition: all 1.2s;
@@ -193,12 +193,12 @@
   transition: all 0.2s;
 }
 button:active.navigate {
-  color: rgba(0, 112, 243, 1);
-  background-color: rgba(0, 112, 243, 0.2);
+  color: var(--main-blue-color);
+  background-color: rgba(71, 152, 207, 0.2);
 }
 
 button:active.copy {
-  background-color: rgba(0, 112, 243, 0.8);
+  background-color: rgba(71, 152, 207, 0.5);
   color: white;
 }
 
@@ -227,7 +227,7 @@ button:active.copy {
 
 .phone,
 .address {
-  font-size: 0.80em;
+  font-size: 0.8em;
 }
 
 .open {
@@ -281,7 +281,7 @@ button:active.copy {
 .PictureContainer {
   display: flex;
   justify-content: center;
-  border-radius: .60em;
+  border-radius: 0.6em;
   padding: 1.5em 1.5em;
   margin: 1.9em auto;
   background: white;
@@ -377,26 +377,25 @@ button:active.copy {
   .address {
     font-size: 0.75em;
   }
-  .open{
-    margin-left: .5em;
+  .open {
+    margin-left: 0.5em;
   }
 
-  .distance_ratings{
-    padding-right: .5em;
+  .distance_ratings {
+    padding-right: 0.5em;
   }
   .PictureContainer {
     margin-left: 0;
-    padding: 1em .5em;
+    padding: 1em 0.5em;
   }
 }
 
 @media (max-width: 400px) {
-  
-  .hospitalCard { 
-    margin: 2em -.5em;
+  .hospitalCard {
+    margin: 2em -0.5em;
   }
-  .PictureContainer { 
-    margin-left: -.5em;
-    margin-right: -.5em;
+  .PictureContainer {
+    margin-left: -0.5em;
+    margin-right: -0.5em;
   }
 }
