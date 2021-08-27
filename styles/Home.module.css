@@ -34,7 +34,7 @@
 }
 
 .title a {
-  color: var(--main-blue-color);
+  color: rgb(var(--main-blue-color));
   text-decoration: none;
 }
 
@@ -106,8 +106,8 @@
 /* .card:hover,
 .card:focus,
 .card:active {
-  color: var(--main-blue-color); 
-  border-color: var(--main-blue-color);
+  color: rgb(var(--main-blue-color)); 
+  border-color: rgb(var(--main-blue-color));
 } */
 
 .card h2 {
@@ -193,7 +193,7 @@
   transition: all 0.2s;
 }
 button:active.navigate {
-  color: var(--main-blue-color);
+  color: rgb(var(--main-blue-color));
   background-color: rgba(71, 152, 207, 0.2);
 }
 
@@ -205,15 +205,15 @@ button:active.copy {
 .navigate {
   margin-right: 1.125em;
   color: white;
-  background-color: var(--main-blue-color);
+  background-color: rgb(var(--main-blue-color));
 
-  border: solid 1px var(--main-blue-color);
+  border: solid 1px rgb(var(--main-blue-color));
 }
 
 .copy {
   background: white;
-  color: var(--main-blue-color);
-  border: solid 1px var(--main-blue-color);
+  color: rgb(var(--main-blue-color));
+  border: solid 1px rgb(var(--main-blue-color));
 }
 
 .name {
@@ -303,7 +303,7 @@ button:active.copy {
   height: 18px;
   border: none;
   background: transparent;
-  color: var(--main-blue-color);
+  color: rgb(var(--main-blue-color));
   margin-left: 0.5em;
   transform: translateY(0.3em);
   /* margin-bottom: 0.5em; */
@@ -365,7 +365,6 @@ button:active.copy {
     padding: 1em 0.2em;
     margin: 1em 0em;
   }
-
   .container {
     flex-direction: column-reverse;
     /* min-width: 500px; */
@@ -404,6 +403,10 @@ button:active.copy {
   .PictureContainer {
     margin-left: -0.5em;
     margin-right: -0.5em;
+  }
+
+  .sectionTitle {
+    justify-content: space-between;
   }
 }
 

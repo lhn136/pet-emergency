@@ -7,7 +7,7 @@ body {
   margin: 1em;
   font-family: 'Poppins', sans-serif;
   background: #f9f6f3;
-  --main-blue-color: rgb(71, 152, 207);
+  --main-blue-color: 71, 152, 207;
 }
 
 a {
