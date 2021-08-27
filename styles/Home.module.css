@@ -194,11 +194,11 @@
 }
 button:active.navigate {
   color: rgb(var(--main-blue-color));
-  background-color: rgba(71, 152, 207, 0.2);
+  background-color: rgba(var(--main-blue-color), 0.2);
 }
 
 button:active.copy {
-  background-color: rgba(71, 152, 207, 0.5);
+  background-color: rgba(var(--main-blue-color), 0.5);
   color: white;
 }
 
