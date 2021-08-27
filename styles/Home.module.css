@@ -305,6 +305,7 @@ button:active.copy {
   background: transparent;
   color: var(--main-blue-color);
   margin-left: 0.5em;
+  transform: translateY(0.3em);
   /* margin-bottom: 0.5em; */
   transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
