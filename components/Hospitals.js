@@ -1,7 +1,8 @@
+import Skeleton from 'react-loading-skeleton';
 import styles from '../styles/Home.module.css';
 // import testData from './testData.json';
 
-export default function Hospitals({ hospitalData }) {
+export default function Hospitals({ hospitalData, loading }) {
   const data = hospitalData;
   // const data = testData.data.search.business;
 
@@ -37,6 +38,8 @@ export default function Hospitals({ hospitalData }) {
       window.open(baseURL + query, '_blank');
     }
   };
+
+  // console.log(!loading || <div>i Loading fam</div>);
   return (
     <>
       {sortedData &&
@@ -49,42 +52,56 @@ export default function Hospitals({ hospitalData }) {
               >
                 <div className={styles.distance_ratings}>
                   <span className={styles.distance}>
-                    {Math.round(distance * 0.000621371 * 100) / 100} mi
+                    {distance ? (
+                      Math.round(distance * 0.000621371 * 100) / 100 + 'mi'
+                    ) : (
+                      <Skeleton />
+                    )}
                   </span>
-                  <span className={styles.ratings}>⭐ {rating}</span>
+                  <span className={styles.ratings}> {rating ? '⭐' + rating : <Skeleton />}</span>
                 </div>
                 <div className={styles.details}>
-                  <div className={styles.name}>
-                    {index + 1}. {name}
+                  <div className={styles.name}>{name ? index + 1 + '. ' + name : <Skeleton />}</div>
+                  <div className={styles.address}>
+                    {location ? location.formatted_address : <Skeleton count={3} />}
                   </div>
-                  <div className={styles.address}>{location.formatted_address}</div>
                   <div className={styles.phone_open}>
-                    <div className={styles.phone}>{display_phone} </div>
-                    {isOpen24Hours(hours[0].open) && (
-                      <div className={styles.open}> Open 24 hours</div>
+                    <div className={styles.phone}>{display_phone || <Skeleton />}</div>
+                    {hours ? (
+                      isOpen24Hours(hours[0].open) && (
+                        <div className={styles.open}> Open 24 hours</div>
+                      )
+                    ) : (
+                      <div className={styles.open}>
+                        <Skeleton />
+                      </div>
                     )}
                   </div>
 
-                  <div className={styles.buttons}>
-                    <button
-                      className={styles.navigate}
-                      onClick={() => {
-                        // console.log(location.formatted_address);
-                        handleNavigateWithGoogleMap(location.formatted_address);
-                      }}
-                    >
-                      Navigate
-                    </button>
+                  {location ? (
+                    <div className={styles.buttons}>
+                      <button
+                        className={styles.navigate}
+                        onClick={() => {
+                          // console.log(location.formatted_address);
+                          handleNavigateWithGoogleMap(location.formatted_address);
+                        }}
+                      >
+                        Navigate
+                      </button>
 
-                    <button
-                      className={styles.copy}
-                      onClick={() => {
-                        handleCopy(location.formatted_address);
-                      }}
-                    >
-                      Copy
-                    </button>
-                  </div>
+                      <button
+                        className={styles.copy}
+                        onClick={() => {
+                          handleCopy(location.formatted_address);
+                        }}
+                      >
+                        Copy
+                      </button>
+                    </div>
+                  ) : (
+                    <Skeleton />
+                  )}
                 </div>
               </div>
             );

@@ -2,6 +2,10 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { useState, useEffect } from 'react';
+
+import Skeleton from 'react-loading-skeleton';
+
 import { gql } from '@apollo/client';
 import client from '../apollo-client';
 
@@ -18,7 +22,7 @@ import locationRequestImage from '../public/location-request.svg';
 export async function getServerSideProps(context) {
   let { latitude, longitude } = context.query;
   if (!latitude && !longitude) {
-    return { props: { hospitalData: {} } };
+    return { props: { hospitalData: [{}, {}, {}] } };
   }
 
   const QUERY = gql`
@@ -59,6 +63,7 @@ export async function getServerSideProps(context) {
     return error;
   }
   // Pass data to the page via props
+  // console.log('YO:', hospitalData || [{}]);
 
   return { props: { hospitalData } };
 }
@@ -67,8 +72,32 @@ export default function Home({ hospitalData }) {
   // console.log({ hospitalData });
   // console.log(Object.keys(hospitalData).length);
   const Router = useRouter();
+  const [loading, setLoading] = useState(false);
+  // console.log(Object.keys(Router.query).length || true);
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setLoading(true);
+    };
+    const handleRouteCompletion = () => {
+      setLoading(false);
+    };
 
+    Router.events.on('routeChangeStart', handleRouteChange);
+    Router.events.on('routeChangeComplete', handleRouteCompletion);
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method:
+    return () => {
+      Router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [Router.events]);
+  const hasLatLong = () => {
+    return (
+      Object.keys(Router.query).includes('latitude') &&
+      Object.keys(Router.query).includes('longitude')
+    );
+  };
   const getLocation = () => {
+    setLoading(true);
     navigator.geolocation.getCurrentPosition(function (position) {
       if (position.coords.latitude && position.coords.longitude) {
         Router.push({
@@ -81,7 +110,8 @@ export default function Home({ hospitalData }) {
       }
     });
   };
-
+  console.log(hospitalData[0].name);
+  console.log('Object.keys(Router.query).length', Object.keys(Router.query).includes('latitude'));
   return (
     <div className={styles.mainContainer}>
       <Head>
@@ -99,26 +129,36 @@ export default function Home({ hospitalData }) {
       <main>
         <h1 className={styles.titleText}>
           Keep{' '}
-          <span style={{ color: 'var(--main-blue-color)' }}>
+          <span style={{ color: 'rgb(var(--main-blue-color))' }}>
             <strong>calm</strong>
           </span>
           . We are here to help.
         </h1>
         <div className={styles.container}>
           <Instructions />
-
           <div className={styles.NearestHospitals}>
             <div className={styles.sectionTitle}>
               <h2>Nearest available emergency pet hospitals</h2>
-              {Object.keys(hospitalData).length ? <RefreshButton getLocation={getLocation} /> : ''}
+              {!(hasLatLong() === false && loading === false) ? (
+                <RefreshButton getLocation={getLocation} />
+              ) : (
+                ''
+              )}
             </div>
-            {/* <div className={styles.NearestScrollable} style={{ overflow: 'hidden' }}> */}
-            {Object.keys(hospitalData).length ? (
-              <Hospitals hospitalData={hospitalData} />
-            ) : (
+
+            {/* {Object.keys(hospitalData).length ? (
+              <Hospitals hospitalData={hospitalData} loading={loading} />
+            )  */}
+            {hasLatLong() === false && loading === false ? (
               <LocationServiceCard />
+            ) : (
+              <Hospitals hospitalData={hospitalData} />
             )}
-            {/* </div> */}
+            {/* {loading ? (
+              <Hospitals hospitalData={[{}]} loading={loading} />
+            ) : (
+              <Hospitals hospitalData={hospitalData} loading={loading} />
+            )} */}
           </div>
         </div>
       </main>
