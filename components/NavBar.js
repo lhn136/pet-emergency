@@ -23,14 +23,14 @@ const Navbar = ({ getLocation }) => {
             </div>
 
             <div className={styles.companyName}>
-              <span style={{ color: 'var(--main-blue-color)' }}>Pet</span>Emergency
+              <span style={{ color: 'rgb(var(--main-blue-color))' }}>Pet</span>Emergency
             </div>
           </a>
         </Link>
       </div>
       <div className={styles.NavItem}>
         <Link className={styles.NavItem} href="/">
-          <a style={{ fontSize: '.8em' }}>about us</a>
+          <a style={{ fontSize: '.8em', transform: 'translateY(2px)' }}>about us</a>
         </Link>
       </div>
     </div>
