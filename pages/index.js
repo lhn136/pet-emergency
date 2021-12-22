@@ -150,7 +150,7 @@ export default function Home({ hospitalData }) {
               <Hospitals hospitalData={hospitalData} loading={loading} />
             )  */}
             {hasLatLong() === false && loading === false ? (
-              <LocationServiceCard />
+              <LocationServiceCard getLocation={getLocation} />
             ) : (
               <Hospitals hospitalData={hospitalData} />
             )}

@@ -139,7 +139,7 @@
 .hospitalCard {
   display: flex;
   flex-direction: row;
-
+  animation-duration: 2s;
   max-width: 550px;
   /* width: 90%; */
   /* height: 100%; */

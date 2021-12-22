@@ -4,7 +4,6 @@ import styles from '../styles/Home.module.css';
 
 export default function Hospitals({ hospitalData, loading }) {
   const data = hospitalData;
-  // const data = testData.data.search.business;
 
   let sortedData;
 
@@ -13,6 +12,7 @@ export default function Hospitals({ hospitalData, loading }) {
       a.distance - b.distance;
     });
   }
+
   const isOpen24Hours = (hours) => {
     let Open24HoursBool = true;
     if (hours) {
@@ -26,9 +26,11 @@ export default function Hospitals({ hospitalData, loading }) {
 
     return Open24HoursBool;
   };
+
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
   };
+
   const handleNavigateWithGoogleMap = (address) => {
     if (address) {
       // console.log({ address });
@@ -53,17 +55,17 @@ export default function Hospitals({ hospitalData, loading }) {
                 <div className={styles.distance_ratings}>
                   <span className={styles.distance}>
                     {distance ? (
-                      Math.round(distance * 0.000621371 * 100) / 100 + 'mi'
+                      Math.round(distance * 0.000621371 * 100) / 100 + ' mi'
                     ) : (
                       <Skeleton />
                     )}
                   </span>
-                  <span className={styles.ratings}> {rating ? '⭐' + rating : <Skeleton />}</span>
+                  <span className={styles.ratings}> {rating ? '⭐ ' + rating : <Skeleton />}</span>
                 </div>
                 <div className={styles.details}>
-                  <div className={styles.name}>{name ? index + 1 + '. ' + name : <Skeleton />}</div>
+                  <div className={styles.name}>{name ? index + 1 + '. ' + name : <Skeleton count={2} />}</div>
                   <div className={styles.address}>
-                    {location ? location.formatted_address : <Skeleton count={3} />}
+                    {location ? location.formatted_address : <Skeleton count={2} />}
                   </div>
                   <div className={styles.phone_open}>
                     <div className={styles.phone}>{display_phone || <Skeleton />}</div>
