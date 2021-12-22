@@ -22,7 +22,7 @@ import locationRequestImage from '../public/location-request.svg';
 export async function getServerSideProps(context) {
   let { latitude, longitude } = context.query;
   if (!latitude && !longitude) {
-    return { props: { hospitalData: [{}, {}, {}] } };
+    return { props: { hospitalData: [{}] } };
   }
 
   const QUERY = gql`
@@ -62,18 +62,13 @@ export async function getServerSideProps(context) {
     error = e.message;
     return error;
   }
-  // Pass data to the page via props
-  // console.log('YO:', hospitalData || [{}]);
-
+  // Pass data to the page via props 
   return { props: { hospitalData } };
 }
 
 export default function Home({ hospitalData }) {
-  // console.log({ hospitalData });
-  // console.log(Object.keys(hospitalData).length);
   const Router = useRouter();
   const [loading, setLoading] = useState(false);
-  // console.log(Object.keys(Router.query).length || true);
   useEffect(() => {
     const handleRouteChange = () => {
       setLoading(true);
@@ -110,8 +105,6 @@ export default function Home({ hospitalData }) {
       }
     });
   };
-  console.log(hospitalData[0].name);
-  console.log('Object.keys(Router.query).length', Object.keys(Router.query).includes('latitude'));
   return (
     <div className={styles.mainContainer}>
       <Head>

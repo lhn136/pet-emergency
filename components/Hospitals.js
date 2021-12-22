@@ -33,15 +33,13 @@ export default function Hospitals({ hospitalData, loading }) {
 
   const handleNavigateWithGoogleMap = (address) => {
     if (address) {
-      // console.log({ address });
       let query = address.replace(/\s/g, '+').replace(',', '');
       let baseURL = 'https://www.google.com/maps/place/';
       // open URL in a new tab
       window.open(baseURL + query, '_blank');
     }
   };
-
-  // console.log(!loading || <div>i Loading fam</div>);
+  console.log({ sortedData });
   return (
     <>
       {sortedData &&
@@ -63,7 +61,7 @@ export default function Hospitals({ hospitalData, loading }) {
                   <span className={styles.ratings}> {rating ? '⭐ ' + rating : <Skeleton />}</span>
                 </div>
                 <div className={styles.details}>
-                  <div className={styles.name}>{name ? index + 1 + '. ' + name : <Skeleton count={2} />}</div>
+                  <div className={styles.name}> {name ? index + 1 + '. ' + name : <Skeleton count={2} />}</div>
                   <div className={styles.address}>
                     {location ? location.formatted_address : <Skeleton count={2} />}
                   </div>
@@ -85,7 +83,6 @@ export default function Hospitals({ hospitalData, loading }) {
                       <button
                         className={styles.navigate}
                         onClick={() => {
-                          // console.log(location.formatted_address);
                           handleNavigateWithGoogleMap(location.formatted_address);
                         }}
                       >
