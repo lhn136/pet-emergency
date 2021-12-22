@@ -28,11 +28,11 @@ const Navbar = ({ getLocation }) => {
           </a>
         </Link>
       </div>
-      <div className={styles.NavItem}>
+      {/* <div className={styles.NavItem}>
         <Link className={styles.NavItem} href="/">
           <a style={{ fontSize: '.8em', transform: 'translateY(2px)' }}>about us</a>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };

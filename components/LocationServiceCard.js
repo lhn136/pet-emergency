@@ -5,7 +5,7 @@ import styles from '../styles/Home.module.css';
 
 import locationRequestImage from '../public/location-request.svg';
 
-const LocationServiceCard = () => {
+const LocationServiceCard = ({getLocation}) => {
   const Router = useRouter();
   return (
     <div className={`${styles.hospitalCard} ${styles.card}`}>
@@ -22,17 +22,7 @@ const LocationServiceCard = () => {
           <button
             className={styles.navigate}
             onClick={() => {
-              navigator.geolocation.getCurrentPosition(function (position) {
-                if (position.coords.latitude && position.coords.longitude) {
-                  Router.push({
-                    pathname: `/`,
-                    query: {
-                      latitude: `${position.coords.latitude}`,
-                      longitude: `${position.coords.longitude}`,
-                    },
-                  });
-                }
-              });
+              getLocation();
             }}
           >
             Enable Location
